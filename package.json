@@ -1,0 +1,23 @@
+{
+  "name": "multiple-package-builder",
+  "version": "1.0.0",
+  "description": "This is npm install wrapper, to avoid to download duplicate dependencies in case of common project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/enricoaleandri/multiple-package-builder"
+  },
+  "packages": {
+    "project0": "./project0/",
+    "project1": "./project1/"
+  },
+  "author": "Enrico Aleandri",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.6.8",
+    "liftoff": "^2.3.0"
+  }
+}
