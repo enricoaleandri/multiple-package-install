@@ -1,17 +1,10 @@
-#Tweet Cleaner
-This is a Simple script to generate MP3 from text, using public Google Translate API, so it have the limits of public usage 
-
-[![NPM](https://nodei.co/npm/tweet-cleaner.png)](https://nodei.co/npm/tweet-cleaner/)
-
-[![npm version](https://badge.fury.io/js/tweet-cleaner.svg)](https://badge.fury.io/js/tweet-cleaner)
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-
+# multiple-package-install
 ## Installation
 
 Install this module through npm or clone it:
 
 ```javascript
-npm install --save tweet-cleaner
+//coming soon
 ```
 
 ## Usage
@@ -21,7 +14,7 @@ npm install --save tweet-cleaner
 
 
 ```
-git clone https://github.com/enricoaleandri/tweet-cleaner.git 
+git clone https://github.com/enricoaleandri/multiple-package-install.git 
 cd tweet-cleaner
 npm install
 ```
