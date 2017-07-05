@@ -10,7 +10,7 @@
     "type": "git",
     "url": "github.com/enricoaleandri/multiple-package-install"
   },
-  "author": "Enrico Aleandri",
+  "author": "Enrico Aleandri <aleandrienrico@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "debug": "^2.6.8",

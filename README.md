@@ -10,12 +10,12 @@ Install this module through npm or clone it:
 ## Usage
 
 
-## Bash it
+## Install it
 
 
 ```
 git clone https://github.com/enricoaleandri/multiple-package-install.git 
-cd tweet-cleaner
+cd multiple-package-install
 npm install
 ```
 
