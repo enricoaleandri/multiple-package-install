@@ -29,7 +29,7 @@ var MultiInstall = function () { }
 
         var basePackagePath = packageFile.substring(0, packageFile.lastIndexOf("/")+1);
         var NextPackage = basePackagePath+ otherPackage+'package.json';
-        console.log("NextPackage", NextPackage);
+        //console.log("NextPackage", NextPackage);
         var dst = require(NextPackage);
 
         // Create a new `package.json`
@@ -40,7 +40,7 @@ var MultiInstall = function () { }
       if(typeof packageMergedParsed.dependencies !== "undefined"){
         var deps = [];
         Object.keys(packageMergedParsed.dependencies).forEach(function(name){
-          console.log("name", name, "versione", packageMergedParsed.dependencies[name]);
+          //console.log("name", name, "versione", packageMergedParsed.dependencies[name]);
           deps.push(new DependencyDTO({name : name, version : packageMergedParsed.dependencies[name]}));
         });
         packageMergedParsed.dependencies = deps;
