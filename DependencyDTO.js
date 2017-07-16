@@ -11,6 +11,7 @@ var DependencyDTO = function (obj) {
     return this;
   }
 
+  this.setPackage(obj.package);
   this.setName(obj.name);
   this.setVersion(obj.version);
   this.setPath(obj.path);
@@ -41,6 +42,13 @@ DependencyDTO.prototype.setPath = function (path) {
 };
 DependencyDTO.prototype.getPath = function () {
   return this.path;
+};
+
+DependencyDTO.prototype.setPackage = function (package) {
+  this.package = package;
+};
+DependencyDTO.prototype.getPackage = function () {
+  return this.package;
 };
 
 DependencyDTO.prototype.setDependencies = function (dependencies) {
