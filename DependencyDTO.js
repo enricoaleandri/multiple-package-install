@@ -18,6 +18,10 @@ var DependencyDTO = function (obj) {
 };
 
 
+DependencyDTO.prototype.getFullName = function () {
+  return this.getName()+"@"+this.getVersion();
+};
+
 DependencyDTO.prototype.setName = function (name) {
   this.name = name;
 };
@@ -45,9 +49,10 @@ DependencyDTO.prototype.setDependencies = function (dependencies) {
 
     var deps = dependencies.map(function(dep){
       var newDep = {};
-      newDep.name = dep[0].substring(0,dep[0].lastIndexOf("@")-1);
-      newDep.version = dep[0].substring(dep[0].lastIndexOf("@"),dep[0].length);
-      newDep.path = dep[1];
+      var from  = dep.from.split("@");
+      newDep.name = from[0];
+      newDep.version = from[1];
+      newDep.path = dep.where;
       return new DependencyDTO(newDep);
     });
     this.dependencies = deps;
