@@ -36,7 +36,7 @@ multiInstall.parsePackages(BASE_DIR+"package.json").then(function(package_json_m
       for (var index = 0; index < requires.length ; index++){
         var currentTopDep = requires[index];
         var from = currentTopDep.package._from.split("@");
-        var where = currentTopDep.package._where;
+        var where = currentTopDep.path;
         var newDep = {};
         newDep.name = from[0];
         newDep.version = from[1];
@@ -46,42 +46,28 @@ multiInstall.parsePackages(BASE_DIR+"package.json").then(function(package_json_m
         var _dependencies = [];
         //installed.chidren
 
-        var depRequires = currentTopDep.requires;
-        var depIndex = 0;
-        while(Array.isArray(depRequires) && depRequires.length > 0){
-          var currentDep = depRequires[depIndex];
-          var childDep = {};
-          childDep.from = currentDep.package._from;
-          childDep.where = currentDep.package._where;
-          _dependencies.push(childDep); //
-          depIndex++; // go over next element
-          if(depIndex == depRequires.length){ // if array has been navigated at all,
-            depRequires = depRequires.requires; // I move in deepper node of requires
-            depIndex = 0; // and reset the counter
-          }
-        }
+        var recursiveDependenciesExtractor = function RDE(_requires, __dependecies){
 
-        newDep.dependencies = _dependencies;
+          for(var depIndex = 0 ; depIndex < _requires.length ; depIndex ++){
+            var currentDep = _requires[depIndex];
+            var childDep = {};
+            childDep.from = currentDep.package._from;
+            childDep.where = currentDep.path;
+            __dependecies.push(childDep); //
+            if(Array.isArray(currentDep.requires) && currentDep.requires.length > 0){
+              RDE(currentDep.requires, __dependecies);
+            }
+          }
+          return __dependecies;
+        };
+
+        newDep.dependencies = recursiveDependenciesExtractor(currentTopDep.requires, _dependencies);
         //DEP_END
         npmResultDeps.push(new DependencyDTO(newDep));
       } // END FOR OF TOP DEPENDENCIES
 
 
-      console.log("npmResultDeps", JSON.stringify(npmResultDeps));
-      // WORKING ON SECOND INSTALL
-
-      var onlyTop = installed.children.filter(function(item, index, array){
-        if(item.requiredBy.length == 1 && item.requiredBy[0].path == BASE_DIR) {
-          item.index = index;
-          //array[index].index = index;
-          return item.requiredBy.length == 1 && item.requiredBy[0].path == BASE_DIR;
-        }else{
-          return false;
-        }
-      });
-      //END
-      // log errors or data
-      console.log("npmResultDeps", JSON.stringify(npmResultDeps));
+      console.log("npmResultDeps", JSON.stringify(npmResultDeps));// log the  real deep tree
     });
 
     npm.on('log', function(message) {
